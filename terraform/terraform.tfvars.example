@@ -1,0 +1,13 @@
+kubeconfig_path        = "~/.kube/config"
+kube_context           = "docker-desktop"
+namespace              = "orders-prod"
+service_name           = "orders-service"
+image                  = "ghcr.io/dooolat/orders-service-sre-capstone:latest"
+replicas               = 2
+min_replicas           = 2
+max_replicas           = 8
+cpu_request            = "50m"
+cpu_limit              = "300m"
+memory_request         = "96Mi"
+memory_limit           = "256Mi"
+payment_provider_token = "replace-me"

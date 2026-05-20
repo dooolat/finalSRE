@@ -1,0 +1,8 @@
+# Example only. This file is not used by default in the course submission.
+# Copy it to backend.hcl and run:
+# terraform init -reconfigure -backend-config=backend.hcl
+
+bucket  = "replace-with-your-terraform-state-bucket"
+key     = "orders-service/terraform.tfstate"
+region  = "eu-central-1"
+encrypt = true

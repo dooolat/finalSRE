@@ -1,0 +1,40 @@
+groups:
+  - name: orders-service.rules
+    rules:
+      - alert: OrdersServiceDown
+        expr: up{job="orders-service"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: orders-service
+        annotations:
+          summary: Orders service is down
+          description: Prometheus cannot scrape the orders-service target for at least one minute.
+
+      - alert: OrdersServiceHighErrorRate
+        expr: |
+          sum(rate(http_requests_total{job="orders-service",status_code=~"5.."}[5m]))
+          /
+          clamp_min(sum(rate(http_requests_total{job="orders-service"}[5m])), 0.001)
+          > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          service: orders-service
+        annotations:
+          summary: Orders service 5xx error budget burn
+          description: The service is returning more than 5% 5xx responses over the last 5 minutes.
+
+      - alert: OrdersServiceHighLatencyP95
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum(rate(http_request_duration_seconds_bucket{job="orders-service"}[5m])) by (le)
+          ) > 0.3
+        for: 10m
+        labels:
+          severity: warning
+          service: orders-service
+        annotations:
+          summary: Orders service p95 latency is above 300ms
+          description: The p95 HTTP latency stayed above 300ms for the last 10 minutes.

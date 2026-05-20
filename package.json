@@ -1,0 +1,17 @@
+{
+  "name": "orders-service-sre-capstone",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production readiness review capstone for an e-commerce orders microservice.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "lint": "node scripts/lint.js",
+    "test": "node --test test",
+    "smoke": "node scripts/smoke.js"
+  }
+}

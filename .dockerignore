@@ -1,0 +1,10 @@
+.git
+.github
+docs
+terraform
+observability
+load
+test
+scripts
+README.md
+*.log

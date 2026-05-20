@@ -1,0 +1,27 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: demo-webhook
+  group_by:
+    - alertname
+    - service
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 3h
+
+receivers:
+  # Demo receiver. Alerts still appear in the Alertmanager UI even if no webhook listener is running.
+  # Replace this URL with a real webhook, Slack bridge, or email integration for a production setup.
+  - name: demo-webhook
+    webhook_configs:
+      - url: http://host.docker.internal:19093/alert
+        send_resolved: true
+
+  - name: sre-team-email-example
+    email_configs:
+      - to: sre-team@example.com
+        from: alertmanager@example.com
+        smarthost: smtp.example.com:587
+        auth_username: alertmanager@example.com
+        auth_password: replace-me
