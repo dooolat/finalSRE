@@ -174,12 +174,7 @@ Place them in `docs/evidence/screenshots/`.
 
 This section is a neutral placeholder and should be edited before the final submission.
 
-Suggested format:
-
-- Student 1: application code, Dockerfile, health endpoints
-- Student 2: Kubernetes, Terraform, HPA
-- Student 3: Prometheus, Grafana, Alertmanager
-- Student 4: CI/CD, report, load testing, demo preparation
+Suggested format: individual submission
 
 If this project is submitted individually, replace the list above with a short solo contribution note.
 
